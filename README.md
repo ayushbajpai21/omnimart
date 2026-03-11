@@ -1,12 +1,62 @@
-# React + Vite
+# 🛍️ OmniMart - Premium E-Commerce Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+OmniMart is a modern, high-performance e-commerce application built with **React** and **Vite**. It features a stunning, elite UI with smooth animations and a robust **Hybrid Authentication** system.
 
-Currently, two official plugins are available:
+## 🚀 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **🔐 Hybrid Authentication**:
+    -   **Local Storage Auth**: Standard Sign-up and Login are handled locally for privacy and speed.
+    -   **Firebase Google Auth**: Secure social login integration using Google Firebase.
+-   **📦 Order History & Management**: Full checkout flow with a dedicated orders page to track past purchases.
+-   **🔍 Smart Search & Filtering**: Instant search across all products and categories with dynamic category pages.
+-   **💎 Premium UI/UX**: Built with Lucide Icons and Framer Motion for a smooth, high-end experience.
+-   **📱 Mobile Responsive**: Optimized for every device, from mobile to desktop.
+-   **🛡️ Secure Config**: Environment variables (`.env`) for protecting sensitive API keys.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-   **Frontend**: React (Vite)
+-   **Styles**: Tailwind CSS
+-   **Database/Auth**: Google Firebase & Local Storage
+-   **Icons**: Lucide React
+-   **Animations**: Framer Motion
+-   **Toast**: React Hot Toast
+
+## ⚙️ Local Setup
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/ayushbajpai21/omnimart.git
+    cd omnimart
+    ```
+
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+
+3.  **Configure Environment Variables**:
+    Create a `.env` file in the root directory and add your Firebase credentials (refer to `.env.example`):
+    ```env
+    VITE_FIREBASE_API_KEY=your_api_key
+    VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+    VITE_FIREBASE_PROJECT_ID=your_project_id
+    VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+    VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_id
+    VITE_FIREBASE_APP_ID=your_app_id
+    ```
+
+4.  **Run locally**:
+    ```bash
+    npm run dev
+    ```
+
+## ☁️ Deployment (Vercel)
+
+This project is optimized for **Vercel**. 
+1. Push your code to GitHub.
+2. Import the project in Vercel.
+3. Add the keys from your `.env` file to the **Project Settings > Environment Variables** section in the Vercel Dashboard.
+
+---
+Built with ❤️ by [Ayush Bajpai](https://github.com/ayushbajpai21)
