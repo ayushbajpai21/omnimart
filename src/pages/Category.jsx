@@ -209,7 +209,7 @@ const Category = () => {
                         {filteredProducts.length > 0 ? (
                             <motion.div
                                 layout
-                                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+                                className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-10"
                             >
                                 {filteredProducts.map((product) => (
                                     <motion.div
