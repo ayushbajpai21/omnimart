@@ -233,6 +233,69 @@ const Navbar = () => {
                                     </Link>
                                 ))}
                             </div>
+
+                            {/* Mobile User Actions */}
+                            <div className="pt-6 border-t border-slate-100 flex flex-col space-y-4">
+                                {user ? (
+                                    <>
+                                        <div className="flex items-center space-x-4 p-4 bg-slate-50 rounded-3xl">
+                                            <div className="w-12 h-12 rounded-2xl premium-gradient flex items-center justify-center text-white font-black shadow-lg overflow-hidden">
+                                                {user?.photoURL ? (
+                                                    <img src={user.photoURL} alt="Profile" className="w-full h-full object-cover" />
+                                                ) : (
+                                                    userInitial
+                                                )}
+                                            </div>
+                                            <div>
+                                                <p className="text-sm font-black text-slate-900">{user.displayName || 'User'}</p>
+                                                <p className="text-xs text-slate-400 truncate max-w-[180px]">{user.email}</p>
+                                            </div>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <Link
+                                                to="/profile"
+                                                onClick={() => setIsMenuOpen(false)}
+                                                className="px-6 py-4 bg-white border border-slate-100 rounded-2xl text-center text-sm font-bold text-slate-700 hover:bg-slate-50 transition-all"
+                                            >
+                                                My Profile
+                                            </Link>
+                                            <Link
+                                                to="/orders"
+                                                onClick={() => setIsMenuOpen(false)}
+                                                className="px-6 py-4 bg-white border border-slate-100 rounded-2xl text-center text-sm font-bold text-slate-700 hover:bg-slate-50 transition-all"
+                                            >
+                                                Orders
+                                            </Link>
+                                        </div>
+                                        <button
+                                            onClick={() => {
+                                                logout();
+                                                setIsMenuOpen(false);
+                                            }}
+                                            className="w-full py-4 bg-rose-50 text-rose-500 rounded-2xl font-black text-base hover:bg-rose-100 transition-all"
+                                        >
+                                            Logout
+                                        </button>
+                                    </>
+                                ) : (
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <Link
+                                            to="/login"
+                                            onClick={() => setIsMenuOpen(false)}
+                                            className="px-6 py-4 bg-primary text-white rounded-2xl text-center font-black text-base shadow-lg shadow-primary/20"
+                                        >
+                                            Login
+                                        </Link>
+                                        <Link
+                                            to="/signup"
+                                            onClick={() => setIsMenuOpen(false)}
+                                            className="px-6 py-4 bg-slate-900 text-white rounded-2xl text-center font-black text-base shadow-lg shadow-slate-900/20"
+                                        >
+                                            Sign Up
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </motion.div>
                 )}

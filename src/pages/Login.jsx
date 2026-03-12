@@ -39,14 +39,14 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
+        <div className="min-h-[80vh] flex items-center justify-center px-4 py-8 md:py-12">
             <div className="max-w-md w-full">
-                <div className="bg-white p-10 rounded-[40px] shadow-2xl border border-slate-100 relative overflow-hidden">
+                <div className="bg-white p-6 md:p-10 rounded-[32px] md:rounded-[40px] shadow-2xl border border-slate-100 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-32 h-32 premium-gradient opacity-10 blur-3xl" />
 
-                    <div className="text-center mb-10">
-                        <h2 className="text-4xl font-black text-slate-900 mb-2">Welcome Back</h2>
-                        <p className="text-slate-500 font-medium">Log in to your OmniMart account</p>
+                    <div className="text-center mb-8 md:mb-10">
+                        <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-2">Welcome Back</h2>
+                        <p className="text-sm md:text-base text-slate-500 font-medium">Log in to your OmniMart account</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">

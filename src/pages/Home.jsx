@@ -50,18 +50,18 @@ const Home = () => {
                         </div>
 
                         {/* Content Side - Floating on mobile, Static on desktop */}
-                        <div className="absolute inset-0 md:relative md:w-2/5 h-full flex items-center justify-center md:justify-start px-6 md:px-12 z-10 bg-black/10 md:bg-transparent backdrop-blur-[2px] md:backdrop-blur-0">
+                        <div className="absolute inset-0 md:relative md:w-2/5 h-full flex items-center justify-center md:justify-start px-4 md:px-12 z-10 bg-black/5 md:bg-transparent">
                             <motion.div
                                 initial={{ x: 50, opacity: 0 }}
                                 animate={{ x: 0, opacity: 1 }}
                                 transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-                                className="bg-white/90 backdrop-blur-2xl p-8 md:p-12 rounded-[40px] shadow-2xl border border-white/50 max-w-lg"
+                                className="bg-white/95 backdrop-blur-2xl p-6 md:p-12 rounded-[32px] md:rounded-[40px] shadow-2xl border border-white/50 max-w-[92%] md:max-w-lg"
                             >
                                 <motion.span
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ delay: 0.4 }}
-                                    className={`inline-block px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest mb-6 bg-gradient-to-r ${slides[currentSlide].color} text-white shadow-lg`}
+                                    className={`inline-block px-4 py-1.5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest mb-4 md:mb-6 bg-gradient-to-r ${slides[currentSlide].color} text-white shadow-lg`}
                                 >
                                     New Collection
                                 </motion.span>
@@ -69,7 +69,7 @@ const Home = () => {
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ delay: 0.5 }}
-                                    className="text-4xl md:text-6xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tighter"
+                                    className="text-3xl md:text-6xl font-black text-slate-900 mb-4 md:mb-6 leading-[1.1] tracking-tighter"
                                 >
                                     {slides[currentSlide].title}
                                 </motion.h1>
@@ -77,7 +77,7 @@ const Home = () => {
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ delay: 0.6 }}
-                                    className="text-lg text-slate-500 font-medium mb-10 leading-relaxed"
+                                    className="text-sm md:text-lg text-slate-500 font-medium mb-6 md:mb-10 leading-relaxed"
                                 >
                                     {slides[currentSlide].subtitle}
                                 </motion.p>
@@ -85,19 +85,19 @@ const Home = () => {
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ delay: 0.7 }}
-                                    className="flex items-center space-x-4"
+                                    className="flex flex-wrap items-center gap-4"
                                 >
-                                    <Link to="/products" className="group px-8 py-5 bg-slate-900 text-white rounded-2xl font-black text-sm hover:bg-primary transition-all flex items-center space-x-3 shadow-xl hover:shadow-primary/20 active:scale-95">
+                                    <Link to="/products" className="group px-6 py-4 md:px-8 md:py-5 bg-slate-900 text-white rounded-2xl font-black text-sm hover:bg-primary transition-all flex items-center space-x-3 shadow-xl hover:shadow-primary/20 active:scale-95">
                                         <span>Shop Now</span>
                                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                     </Link>
                                     <div className="flex -space-x-3">
                                         {[1, 2, 3].map(i => (
-                                            <div key={i} className="w-10 h-10 rounded-full border-4 border-white bg-slate-200 overflow-hidden shadow-sm">
+                                            <div key={i} className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 md:border-4 border-white bg-slate-200 overflow-hidden shadow-sm">
                                                 <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="user" />
                                             </div>
                                         ))}
-                                        <div className="w-10 h-10 rounded-full border-4 border-white bg-primary flex items-center justify-center text-[10px] text-white font-black shadow-sm">+10k</div>
+                                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 md:border-4 border-white bg-primary flex items-center justify-center text-[8px] md:text-[10px] text-white font-black shadow-sm">+10k</div>
                                     </div>
                                 </motion.div>
                             </motion.div>
