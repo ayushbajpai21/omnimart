@@ -50,15 +50,20 @@ export const CartProvider = ({ children }) => {
 
     const clearCart = () => setCartItems([]);
 
-    const placeOrder = () => {
+    const placeOrder = (userId, orderDetails) => {
         if (cartItems.length === 0) return;
         
         const newOrder = {
             id: `ORD_${Date.now()}`,
+            userId: userId,
             items: [...cartItems],
+            subtotal: subtotal,
+            tax: subtotal * 0.18,
             total: subtotal + subtotal * 0.18,
             date: new Date().toISOString(),
-            status: 'Delivered'
+            status: 'Processing',
+            shippingDetails: orderDetails.shippingDetails,
+            paymentMethod: orderDetails.paymentMethod,
         };
 
         setOrders(prev => [newOrder, ...prev]);

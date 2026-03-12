@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";
-import { ShoppingBag, ChevronRight, Package, Calendar, CreditCard } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate, Link } from "react-router-dom";
+import { 
+    ShoppingBag, ChevronRight, Package, Calendar, 
+    CreditCard, MapPin, Truck, Landmark, Info
+} from "lucide-react";
 
 const Orders = () => {
     const { orders } = useCart();
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
-    if (orders.length === 0) {
+    useEffect(() => {
+        if (!user) {
+            navigate("/login");
+        }
+    }, [user, navigate]);
+
+    // Filter orders for the current user
+    const userOrders = orders.filter(order => order.userId === user?.uid);
+
+    if (userOrders.length === 0) {
         return (
             <div className="max-w-7xl mx-auto px-4 py-20 text-center">
                 <div className="w-24 h-24 bg-slate-100 flex items-center justify-center rounded-[40px] mx-auto mb-8">
@@ -35,13 +50,13 @@ const Orders = () => {
                 </div>
                 <div className="px-6 py-3 bg-slate-50 border border-slate-200 rounded-2xl">
                     <span className="text-slate-500 font-bold mr-2 uppercase tracking-widest text-xs">Total Orders:</span>
-                    <span className="text-xl font-black text-slate-900">{orders.length}</span>
+                    <span className="text-xl font-black text-slate-900">{userOrders.length}</span>
                 </div>
             </div>
 
-            <div className="space-y-8">
-                {orders.map((order) => (
-                    <div key={order.id} className="bg-white rounded-[40px] shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
+            <div className="space-y-12">
+                {userOrders.map((order) => (
+                    <div key={order.id} className="bg-white rounded-[40px] shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300">
                         {/* Order Header */}
                         <div className="bg-slate-50/50 p-6 md:p-8 border-b border-slate-100 grid grid-cols-2 md:grid-cols-4 gap-6">
                             <div>
@@ -78,22 +93,65 @@ const Orders = () => {
                             </div>
                         </div>
 
-                        {/* Order Items */}
-                        <div className="p-6 md:p-8 space-y-6">
-                            {order.items.map((item, idx) => (
-                                <div key={idx} className="flex items-center gap-6 group">
-                                    <div className="w-20 h-20 bg-slate-50 rounded-2xl overflow-hidden flex-shrink-0">
-                                        <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                        {/* Order Items & Details */}
+                        <div className="p-6 md:p-10">
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                                {/* Items List */}
+                                <div className="lg:col-span-2 space-y-8">
+                                    <div className="flex items-center space-x-2 mb-4">
+                                        <Package className="w-5 h-5 text-primary" />
+                                        <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest">Ordered Items</h4>
                                     </div>
-                                    <div className="flex-1">
-                                        <h4 className="text-lg font-black text-slate-900 group-hover:text-primary transition-colors">{item.name}</h4>
-                                        <p className="text-slate-500 font-bold text-sm">Qty: {item.quantity}</p>
+                                    {order.items.map((item, idx) => (
+                                        <div key={idx} className="flex items-center gap-6 group">
+                                            <div className="w-20 h-20 bg-slate-50 rounded-2xl overflow-hidden flex-shrink-0 border border-slate-100">
+                                                <img src={item.image} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <h4 className="text-lg font-black text-slate-900 group-hover:text-primary transition-colors">{item.name}</h4>
+                                                <p className="text-slate-500 font-bold text-sm">Quantity: {item.quantity}</p>
+                                                <p className="text-primary font-black mt-1">₹{item.price.toLocaleString()}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Shipping & Payment Details */}
+                                <div className="lg:col-span-1 space-y-8">
+                                    <div>
+                                        <div className="flex items-center space-x-2 mb-4">
+                                            <MapPin className="w-5 h-5 text-primary" />
+                                            <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest">Delivery Details</h4>
+                                        </div>
+                                        <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                                            <p className="font-black text-slate-900 mb-1">{order.shippingDetails?.fullName}</p>
+                                            <p className="text-sm text-slate-500 leading-relaxed font-medium">
+                                                {order.shippingDetails?.address}<br />
+                                                {order.shippingDetails?.city} - {order.shippingDetails?.zipCode}<br />
+                                                Contact: {order.shippingDetails?.phone}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="text-right">
-                                        <p className="text-xl font-black text-slate-900">₹{item.price.toLocaleString()}</p>
+
+                                    <div>
+                                        <div className="flex items-center space-x-2 mb-4">
+                                            <Info className="w-5 h-5 text-primary" />
+                                            <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest">Transaction Info</h4>
+                                        </div>
+                                        <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 flex items-center space-x-4">
+                                            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm">
+                                                {order.paymentMethod === 'card' && <CreditCard className="w-6 h-6" />}
+                                                {order.paymentMethod === 'upi' && <Landmark className="w-6 h-6" />}
+                                                {order.paymentMethod === 'cod' && <Truck className="w-6 h-6" />}
+                                            </div>
+                                            <div>
+                                                <p className="text-xs font-black text-slate-400 mb-0.5 uppercase tracking-tighter">Method</p>
+                                                <p className="font-black text-slate-900 capitalize">{order.paymentMethod || 'N/A'}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            ))}
+                            </div>
                         </div>
                     </div>
                 ))}

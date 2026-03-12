@@ -13,6 +13,7 @@ import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Orders from "./pages/Orders";
+import Checkout from "./pages/Checkout";
 
 import { Facebook, Twitter, Instagram, Linkedin, Send, Mail, Phone, MapPin } from "lucide-react";
 
@@ -31,6 +32,7 @@ function App() {
                   <Route path="/products" element={<Category />} />
                   <Route path="/category/:id" element={<Category />} />
                   <Route path="/cart" element={<Cart />} />
+                  <Route path="/checkout" element={<Checkout />} />
                   <Route path="/wishlist" element={<Wishlist />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/orders" element={<Orders />} />

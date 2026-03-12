@@ -14,11 +14,7 @@ const Cart = () => {
     };
 
     const handleCheckout = () => {
-        const orderId = placeOrder();
-        if (orderId) {
-            toast.success("Order placed successfully!", { icon: "🎉" });
-            navigate("/orders");
-        }
+        navigate("/checkout");
     };
 
     if (cartItems.length === 0) {
